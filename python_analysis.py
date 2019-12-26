@@ -86,4 +86,12 @@ if 'montant' not in data.columns:
     data["montant"] = data["debit"] + data["credit"]
     del data["debit"], data["credit"]
 
-#
+# Creation of the 'solde_avt_ope' variable
+data = data.sort_values("date_operation")
+amount = data["montant"]
+balance = amount.cumsum()
+balance = list(balance.values)
+last_val = balance[-1]
+balance = balance[:-1]
+balance = balance - last_val + LAST_BALANCE
+data["solde_avt_ope"] = balance
