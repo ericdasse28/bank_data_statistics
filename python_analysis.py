@@ -139,3 +139,7 @@ data["jour_sem"] = data["date_operation"].map(lambda d: d.day_name)
 data["jour_sem_num"] = data["date_operation"].map(lambda d: d.weekday()+1)
 data["weekend"] = data["date_operation"].isin(WEEKEND)
 data["quart_mois"] = [int((jour - 1)*4/31) for jour in data["jour"]]
+
+
+# Saving to a CSV file
+data.to_csv("data/operations_enrichies.csv", index=False)
