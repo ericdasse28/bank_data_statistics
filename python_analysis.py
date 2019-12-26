@@ -112,3 +112,19 @@ def detect_words(values, dictionary):
 
 data["categ"] = detect_words(data["libelle"], CATEG)
 data["type"] = detect_words(data["libelle"], TYPE)
+
+
+# Creation of the columns 'tranche_depense' and 'sens'
+def expense_slice(value):
+    value = value  # Expenses are negative numbers
+    if value < 0:
+        return "(not an expense)"
+    elif value < EXPENSES[0]:
+        return "small"
+    elif value < EXPENSES[1]:
+        return "average"
+    else:
+        return "big"
+
+data["tranche_depense"] = data["montant"].map(expense_slice)
+data["sens"] = ["credit" if m > 0 else "debit" for m in data["montant"]]
