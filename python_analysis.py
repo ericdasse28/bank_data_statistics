@@ -92,6 +92,23 @@ amount = data["montant"]
 balance = amount.cumsum()
 balance = list(balance.values)
 last_val = balance[-1]
-balance = balance[:-1]
+balance = [0] + balance[:-1]
 balance = balance - last_val + LAST_BALANCE
 data["solde_avt_ope"] = balance
+
+
+# Assigning operations to a category and a type
+def detect_words(values, dictionary):
+    result = []
+    for lib in values:
+        operation_type = "OTHER"
+        for word, val in dictionary.items():
+            if word in lib:
+                operation_type = val
+        result.append(operation_type)
+
+    return result
+
+
+data["categ"] = detect_words(data["libelle"], CATEG)
+data["type"] = detect_words(data["libelle"], TYPE)
