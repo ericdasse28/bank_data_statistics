@@ -64,3 +64,12 @@ WEEKEND = ["Saturday", "Sunday"]  # Non-working days
 # The LAST_BALANCE constant corresponds to the balance of the account after the
 # last operation in our csv file
 
+
+# Column check
+for c in ['date_operation', 'libelle', 'debit', 'credit']:
+    if c not in data.columns:
+        if (c in ['debit', 'credit'] and 'montant' not in data.columns) or \
+                (c not in ['debit', 'credit']):
+            msg = "You are missing the column {}. Pay attention to upper "
+            msg += "and lower case characters in the column names"
+            raise Exception(msg.format(c))
