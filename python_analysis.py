@@ -58,4 +58,9 @@ EXPENSES = [80, 120]  # Expense categories boundaries: small, average, big
 LAST_BALANCE = 2400  # Last known balance
 WEEKEND = ["Saturday", "Sunday"]  # Non-working days
 
+# Here, it's assumed that a small expense is below 80€, an average one between
+# 80€ and 120€ and finally, a big one over 120€
+
+# The LAST_BALANCE constant corresponds to the balance of the account after the
+# last operation in our csv file
 
