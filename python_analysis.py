@@ -79,3 +79,11 @@ for c in data.columns:
     if c not in ['date_operation', 'libelle', 'debit', 'credit', 'montant']:
         del data[c]
 
+# Adding the 'montant' column
+if 'montant' not in data.columns:
+    data["debit"] = data["debit"].fillna(0)
+    data["credit"] = data["credit"].fillna(0)
+    data["montant"] = data["debit"] + data["credit"]
+    del data["debit"], data["credit"]
+
+#
