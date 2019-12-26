@@ -137,7 +137,7 @@ data["mois"] = data["date_operation"].map(lambda d: d.month)
 data["jour"] = data["date_operation"].map(lambda d: d.day)
 data["jour_sem"] = data["date_operation"].map(lambda d: d.day_name)
 data["jour_sem_num"] = data["date_operation"].map(lambda d: d.weekday()+1)
-data["weekend"] = data["date_operation"].isin(WEEKEND)
+data["weekend"] = data["jour_sem"].isin(WEEKEND)
 data["quart_mois"] = [int((jour - 1)*4/31) for jour in data["jour"]]
 
 
