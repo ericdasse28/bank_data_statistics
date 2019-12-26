@@ -73,3 +73,9 @@ for c in ['date_operation', 'libelle', 'debit', 'credit']:
             msg = "You are missing the column {}. Pay attention to upper "
             msg += "and lower case characters in the column names"
             raise Exception(msg.format(c))
+
+# Deleting worthless columns
+for c in data.columns:
+    if c not in ['date_operation', 'libelle', 'debit', 'credit', 'montant']:
+        del data[c]
+
