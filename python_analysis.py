@@ -126,5 +126,16 @@ def expense_slice(value):
     else:
         return "big"
 
+
 data["tranche_depense"] = data["montant"].map(expense_slice)
 data["sens"] = ["credit" if m > 0 else "debit" for m in data["montant"]]
+
+
+# Creation of the other variables
+data["annee"] = data["date_operation"].map(lambda d: d.year)
+data["mois"] = data["date_operation"].map(lambda d: d.month)
+data["jour"] = data["date_operation"].map(lambda d: d.day)
+data["jour_sem"] = data["date_operation"].map(lambda d: d.day_name)
+data["jour_sem_num"] = data["date_operation"].map(lambda d: d.weekday()+1)
+data["weekend"] = data["date_operation"].isin(WEEKEND)
+data["quart_mois"] = [int((jour - 1)*4/31) for jour in data["jour"]]
