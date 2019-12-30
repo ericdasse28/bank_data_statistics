@@ -154,7 +154,10 @@ plt.show()
 data["categ"].value_counts(normalize=True).plot(kind='bar')
 plt.show()
 
-
+# QUANTITATIVE VARIABLE
+# Bar graph (diagramme en bâtons)
+data["quart_mois"].value_counts(normalize=True).plot(kind='bar', width=0.1)
+plt.show()
 
 # Saving to a CSV file
 data.to_csv("data/operations_enrichies.csv", index=False)
