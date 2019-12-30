@@ -163,5 +163,9 @@ plt.show()
 data["montant"].hist(density=True)
 plt.show()
 
+# A prettier version of the histogram
+data[data.montant.abs < 100]["montant"].hist(density=True, bins=20)
+plt.show()
+
 # Saving to a CSV file
 data.to_csv("data/operations_enrichies.csv", index=False)
