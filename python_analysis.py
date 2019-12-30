@@ -151,6 +151,9 @@ plt.axis('equal')
 plt.show()
 
 # Bar graph (diagramme en tuyaux d'orgue)
+data["categ"].value_counts(normalize=True).plot(kind='bar')
+plt.show()
+
 
 
 # Saving to a CSV file
