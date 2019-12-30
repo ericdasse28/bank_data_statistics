@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import pandas as pd
 from collections import Counter
 
@@ -139,6 +140,17 @@ data["jour_sem"] = data["date_operation"].map(lambda d: d.day_name())
 data["jour_sem_num"] = data["date_operation"].map(lambda d: d.weekday()+1)
 data["weekend"] = data["jour_sem"].isin(WEEKEND)
 data["quart_mois"] = [int((jour - 1)*4/31)+1 for jour in data["jour"]]
+
+
+# QUANTITATIVE VARIABLE
+# Pie chart
+data["categ"].value_counts(normalize=True).plot(kind='pie')
+
+# This line makes sure the pie chart is a circle instead of an ellipse
+plt.axis('equal')
+plt.show()
+
+# Bar graph (diagramme en tuyaux d'orgue)
 
 
 # Saving to a CSV file
