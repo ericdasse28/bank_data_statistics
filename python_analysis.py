@@ -167,5 +167,17 @@ plt.show()
 data[data.montant.abs() < 100]["montant"].hist(density=True, bins=20)
 plt.show()
 
+# Table representation of the 'quart_mois' variable
+totals = data["quart_mois"].value_counts()
+terms = totals.index
+
+tab = pd.DataFrame(terms, columns=["quart_mois"])
+tab["n"] = totals.values
+tab["f"] = tab["n"] / len(terms)
+# It is often necessary to sort the 'quart_mois' values in ascending order
+# before computing the cumulative frequencies
+tab["F"] = tab["f"].cumsum()
+print(tab)
+
 # Saving to a CSV file
 data.to_csv("data/operations_enrichies.csv", index=False)
